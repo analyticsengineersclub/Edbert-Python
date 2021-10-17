@@ -14,14 +14,18 @@ subparsers = parser.add_subparsers(help="sub-command help", dest="command")
 add = subparsers.add_parser("add", help = "add integers")
 add.add_argument("ints_to_sum", nargs='*', type=int)
 
-sub = subparsers.add_parser("sub", help = "subtract two integers")
-sub.add_argument("ints_to_sub", nargs=2, type=int)
+sub = subparsers.add_parser("sub", help = "subtract integers")
+sub.add_argument("ints_to_sub", nargs='*', type=int)
 
 # Testing in Python lecture
 def aec_subtract(ints_to_sub):
     our_sub = ints_to_sub[0] - ints_to_sub[1]
-    # Test part 2 Lecture
-    if our_sub < 0:
+    # Test Exercise 2
+    if len(ints_to_sub) > 2:
+        raise Exception("Too many arguments")
+        # the print statement does not work - Python extension indicates not reachable
+        print("Exception: You inputted too many arguments") 
+    elif our_sub < 0:
         our_sub = 0
     print(f"The subtracted result of values is: {our_sub}")
     return(our_sub)
@@ -32,18 +36,22 @@ multiply.add_argument("ints_to_multiply", nargs=2, type=int)
 
 # Exercise 2B: Add subcommand for division
 divide = subparsers.add_parser("divide", help = "divide two integers")
-divide.add_argument("ints_to_divide", nargs=2, type=int)
+divide.add_argument("ints_to_divide", nargs='*', type=int)
 
 # Testing in Python lecture - Exercise 1
 def aec_divide(ints_to_divide):
+    # Testing in Python - Exercise 3 too many arg
     # Testing in Python - Exercise 2 TDD
-    try:
-        our_divide = (ints_to_divide[0] / ints_to_divide[1])
-        print(f"The division result of values is: {our_divide}")
-        return(our_divide)
-    except ZeroDivisionError:
-        print("Division by Zero - retry with different arguments")
-        return(0)
+    if len(ints_to_divide) > 2:
+        raise Exception("Too many arguments")
+    elif len(ints_to_divide) == 2:
+        try:
+            our_divide = (ints_to_divide[0] / ints_to_divide[1])
+            print(f"The division result of values is: {our_divide}")
+            return(our_divide)
+        except ZeroDivisionError:
+            print("Division by Zero - retry with different arguments")
+            return(0)
     
 
 if __name__ == "__main__":
@@ -60,11 +68,7 @@ if __name__ == "__main__":
         print(f"The product of values is: {our_multiply}")
 
     if args.command == "divide":
-        try:
-            our_divide = Decimal(args.ints_to_divide[0] / args.ints_to_divide[1])
-            print(f"The division result of values is: {our_divide}")
-        except ZeroDivisionError:
-            print("Division by Zero - retry with different arguments")
+        aec_divide(args.ints_to_divide)
     
 
 # parser.add_argument("ints_to_sum", nargs=2, type=int)
