@@ -31,6 +31,12 @@ multiply.add_argument("ints_to_multiply", nargs=2, type=int)
 divide = subparsers.add_parser("divide", help = "divide two integers")
 divide.add_argument("ints_to_divide", nargs=2, type=int)
 
+# Testing in Python lecture - Exercise 1
+def aec_divide(ints_to_divide):
+    our_divide = (ints_to_divide[0] / ints_to_divide[1])
+    print(f"The division result of values is: {our_divide}")
+    return(our_divide)
+
 if __name__ == "__main__":
     args = parser.parse_args()
 
