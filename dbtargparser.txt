@@ -1,0 +1,24 @@
+# Review dbt arg parser code to answer following questions
+# Reference:  https://github.com/dbt-labs/dbt-core/blob/c0d757ab1926d8d5560d857c5f776d3358618f42/core/dbt/main.py#L261
+    1) What looks familiar?
+    2) What don't you understand?
+
+What I understand
+
+General
+- some arguments have default vs. some do not  default is returned when no argument is supplied
+- type enforces data integrity of what user enters in CL
+- Recognize a lot of arguments from our exercises like "deps", "snapshot", "source"
+
+Specific
+- Line 262: add_help=False means you are not able to run -h or --help to better understand the function
+
+What I do not understand
+
+General
+- How a class works
+- What the * signifies before args and kwargs (key word arguments?)
+
+
+
+
