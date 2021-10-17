@@ -36,9 +36,15 @@ divide.add_argument("ints_to_divide", nargs=2, type=int)
 
 # Testing in Python lecture - Exercise 1
 def aec_divide(ints_to_divide):
-    our_divide = (ints_to_divide[0] / ints_to_divide[1])
-    print(f"The division result of values is: {our_divide}")
-    return(our_divide)
+    # Testing in Python - Exercise 2 TDD
+    try:
+        our_divide = (ints_to_divide[0] / ints_to_divide[1])
+        print(f"The division result of values is: {our_divide}")
+        return(our_divide)
+    except ZeroDivisionError:
+        print("Division by Zero - retry with different arguments")
+        return(0)
+    
 
 if __name__ == "__main__":
     args = parser.parse_args()
