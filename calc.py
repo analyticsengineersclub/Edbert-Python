@@ -20,6 +20,9 @@ sub.add_argument("ints_to_sub", nargs=2, type=int)
 # Testing in Python lecture
 def aec_subtract(ints_to_sub):
     our_sub = ints_to_sub[0] - ints_to_sub[1]
+    # Test part 2 Lecture
+    if our_sub < 0:
+        our_sub = 0
     print(f"The subtracted result of values is: {our_sub}")
     return(our_sub)
 
