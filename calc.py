@@ -17,6 +17,12 @@ add.add_argument("ints_to_sum", nargs='*', type=int)
 sub = subparsers.add_parser("sub", help = "subtract two integers")
 sub.add_argument("ints_to_sub", nargs=2, type=int)
 
+# Testing in Python lecture
+def aec_subtract(ints_to_sub):
+    our_sub = ints_to_sub[0] - ints_to_sub[1]
+    print(f"The subtracted result of values is: {our_sub}")
+    return(our_sub)
+
 # Exercise 2A: Add subcommand for multiplication
 multiply = subparsers.add_parser("multiply", help = "multiply two integers")
 multiply.add_argument("ints_to_multiply", nargs=2, type=int)
@@ -25,27 +31,25 @@ multiply.add_argument("ints_to_multiply", nargs=2, type=int)
 divide = subparsers.add_parser("divide", help = "divide two integers")
 divide.add_argument("ints_to_divide", nargs=2, type=int)
 
+if __name__ == "__main__":
+    args = parser.parse_args()
 
-args = parser.parse_args()
+    if args.command == "add":
+        our_sum = sum(args.ints_to_sum)
 
-if args.command == "add":
-    our_sum = sum(args.ints_to_sum)
-    print(f"The sum of values is: {our_sum}")
+    if args.command == "sub":
+        aec_subtract(args.ints_to_sub)
 
-if args.command == "sub":
-    our_sub = args.ints_to_sub[0] - args.ints_to_sub[1]
-    print(f"The subtracted result of values is: {our_sub}")
+    if args.command == "multiply":
+        our_multiply = args.ints_to_multiply[0] * args.ints_to_multiply[1]
+        print(f"The product of values is: {our_multiply}")
 
-if args.command == "multiply":
-    our_multiply = args.ints_to_multiply[0] * args.ints_to_multiply[1]
-    print(f"The product of values is: {our_multiply}")
-
-if args.command == "divide":
-    try:
-        our_divide = Decimal(args.ints_to_divide[0] / args.ints_to_divide[1])
-        print(f"The division result of values is: {our_divide}")
-    except ZeroDivisionError:
-        print("Division by Zero - retry with different arguments")
+    if args.command == "divide":
+        try:
+            our_divide = Decimal(args.ints_to_divide[0] / args.ints_to_divide[1])
+            print(f"The division result of values is: {our_divide}")
+        except ZeroDivisionError:
+            print("Division by Zero - retry with different arguments")
     
 
 # parser.add_argument("ints_to_sum", nargs=2, type=int)
